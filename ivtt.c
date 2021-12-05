@@ -1936,7 +1936,7 @@ int PutLine(char *buf)
 
     /* handle paragraph start and end codes */
     if (in_comm && comchr == '%') {
-      if (para == 1) output = 0;  
+      if (para == 1 || para == 2) output = 0;  
     }
     if (in_comm && comchr == '$') {
       if (para == 1) output = 0;  
