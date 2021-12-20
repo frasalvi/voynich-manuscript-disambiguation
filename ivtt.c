@@ -777,7 +777,7 @@ int ParseOpts(int argc,char *argv[])
              } else if (val == '1') {
                gaps=1; para=1; /* Gaps and <%> , <$> stripped */
              } else if (val == '2') {
-               gaps=2; para=2; /* Gaps to extra space and <$> to extra NL */
+               gaps=1; para=2; /* Gaps to extra space and <$> to extra NL */
              }
              break;
            case 'q':
