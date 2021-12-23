@@ -21,11 +21,11 @@ def calculate_uncertainties_statistics(text, uncertainty_chars):
     text_wpar = re.sub('\[(^\])+?\]', uncertainty_chars['ALTERNATE_CHAR'], text)
 
     single_unc = uncertainty_chars['SINGLE_UNCERTAINTY'].replace('?', '\?')
-    multi_unc = uncertainty_chars['MULTIPLE_UNCERTAINTY'].replace('?', '\?')
+    unc_seq = uncertainty_chars['UNCERTAIN_SEQUENCE'].replace('?', '\?')
 
     qmarks = re.findall('[^'+single_unc+']('+single_unc+')[^'+single_unc+']', text_wpar)
     qmarks2 = re.findall('[^'+single_unc+']('+single_unc+single_unc+')[^'+single_unc+']', text_wpar)
-    qmarks3 = re.findall(multi_unc, text_wpar)
+    qmarks3 = re.findall(unc_seq, text_wpar)
     maybe_spaces = re.findall(uncertainty_chars['UNCERTAIN_SPACE'], text_wpar)
 
     # Count number of word characters and space-like characters
@@ -34,17 +34,17 @@ def calculate_uncertainties_statistics(text, uncertainty_chars):
 
     alternate_readings_ratio = len(parenthesis) / nchars
     single_uncertainty_ratio = len(qmarks + qmarks2) / nchars
-    multiple_uncertainties_ratio = len(qmarks3) / nchars
+    uncertain_sequences_ratio = len(qmarks3) / nchars
     space_uncertainty_ratio = len(maybe_spaces) / nspaces
 
     print(f'Number of alternate readings: {len(parenthesis)}, {alternate_readings_ratio*100:.3f}% of chars')
     print(f'Number of single uncertainty: {len(qmarks+qmarks2)}, {single_uncertainty_ratio*100:.3f}% of chars')
-    print(f'Number of multiple uncertainties: {len(qmarks3)}, {multiple_uncertainties_ratio*100:.3f}% of chars')
+    print(f'Number of uncertain sequences: {len(qmarks3)}, {uncertain_sequences_ratio*100:.3f}% of chars')
     print(f'Number of uncertain spaces: {len(maybe_spaces)}, {space_uncertainty_ratio*100:.3f}% of spaces')
 
     uncertainty_ratios = {'ALTERNATE_READINGS_RATIO': alternate_readings_ratio,
                           'SINGLE_UNCERTAINTY_RATIO': single_uncertainty_ratio,
-                          'MULTIPLE_UNCERTAINTY_RATIO': multiple_uncertainties_ratio,
+                          'UNCERTAIN_SEQUENCE_RATIO': uncertain_sequences_ratio,
                           'SPACE_UNCERTAINTY_RATIO': space_uncertainty_ratio
                           }
 
@@ -138,8 +138,8 @@ def transform_char(char, uncertainty_ratios, uncertainty_chars, alphabet, char_t
 
     tested_prob += uncertainty_ratios['SINGLE_UNCERTAINTY_RATIO']
 
-    if extraction <= tested_prob + uncertainty_ratios['MULTIPLE_UNCERTAINTY_RATIO']:
-        return uncertainty_chars['MULTIPLE_UNCERTAINTY']
+    if extraction <= tested_prob + uncertainty_ratios['UNCERTAIN_SEQUENCE_RATIO']:
+        return uncertainty_chars['UNCERTAIN_SEQUENCE']
 
     return char
 

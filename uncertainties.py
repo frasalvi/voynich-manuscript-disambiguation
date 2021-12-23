@@ -16,9 +16,9 @@ class Uncertainty:
         right_context (list of str): context to the right of the word in the sentence
         alternatives_list (list of str): list of alternatives for replacing the uncertainty
         uncertainty_type  (set of str): types of uncertainties appearing in the word
-    
+
     Note:
-        uncertainty_type :: 'uncertain_space' | 'alt_reading' | 'single_uncertainty' | 'multiple_uncertainty'
+        uncertainty_type :: 'uncertain_space' | 'alt_reading' | 'single_uncertainty' | 'uncertain_sequence'
     '''
 
     def __init__(self, correct_word, left_context, right_context, uncertainty_types, alternatives_list, corrupted_word):
@@ -80,15 +80,15 @@ def create_alternatives(uncertain_word, uncertainty_chars, alphabet):
     '''
 
     letters = [letter for letter in alphabet]
-    # Create all possible replacements of multiple uncertainties,
+    # Create all possible replacements of uncertain sequences,
     # considering replacements from 1 to 3 characters.
     double_uncertainty_replacements = (''.join(y) for y in
                                        itertools.product(letters, repeat=2))
     double_uncertainty_replacements = list(double_uncertainty_replacements)
-    multiple_uncertainty_replacements = (''.join(y) for y in
+    uncertain_sequence_replacements = (''.join(y) for y in
                                          itertools.product(letters, repeat=3))
-    multiple_uncertainty_replacements = list(multiple_uncertainty_replacements)
-    multiple_uncertainty_replacements += double_uncertainty_replacements + letters
+    uncertain_sequence_replacements = list(uncertain_sequence_replacements)
+    uncertain_sequence_replacements += double_uncertainty_replacements + letters
 
     # Iteratively, go through a nested list of tentative alternatives and resolve
     # ambiguities adding all possible replacements. For each uncertain space,
@@ -117,10 +117,10 @@ def create_alternatives(uncertain_word, uncertainty_chars, alphabet):
                         alternatives[t].append(re.sub(ALT_READING, '\g<2>', alt, 1))
                         continue
 
-                    if uncertainty_chars['MULTIPLE_UNCERTAINTY'] in alt:
+                    if uncertainty_chars['UNCERTAIN_SEQUENCE'] in alt:
                         alternatives[t] += list(map(lambda x: alt.replace(
-                            uncertainty_chars['MULTIPLE_UNCERTAINTY'], x, 1),
-                            multiple_uncertainty_replacements))
+                            uncertainty_chars['UNCERTAIN_SEQUENCE'], x, 1),
+                            uncertain_sequence_replacements))
                         continue
 
                     if uncertainty_chars['SINGLE_UNCERTAINTY'] in alt:
