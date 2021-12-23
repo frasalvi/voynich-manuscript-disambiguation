@@ -28,8 +28,7 @@ The texts used in this project can be mainly found in the foler ```texts/```. Th
 
 ## Resources
 - Benchmarks
-    Used benchmarks can be found in the ```benchmarks/``` folder. Available benchmarks:
-  - Latin synonym selection benchmark
+    The benchmark used for the Latin synonym selection task can be found in the ```benchmarks/``` folder.
 
 - Software
     The software used for filtering and processing the transliterations can be found in ```software/``` folder, taken from [here](http://www.voynich.nu/software/).
