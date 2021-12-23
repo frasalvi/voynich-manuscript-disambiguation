@@ -15,6 +15,26 @@ The repository contains 3 main notebooks:
 - ```embeddings_voynich.ipynb```
   Responsible for generating and training word embeddings on Voynich Manuscript.
 
+## Dependencies
+- ### [Gensim Models](https://radimrehurek.com/gensim/auto_examples/index.html##documentation)
+    - version: ```4.1.2```
+    - package name ``` gensim```
+- ### [NumPy](https://numpy.org/devdocs/index.html)
+  - version: ```1.19.5``` 
+  - package name ``` numpy```
+- ### [SciPy](https://scipy.org/)
+  - version: ```1.7.3```
+  - package name ``` scipy```
+- ### [Natural Language Toolkit](https://www.nltk.org/#natural-language-toolkit)
+  - version: ```3.6.5```
+  - package name ```nltk ```
+- ### [Smart Open](https://pypi.org/project/smart-open/)
+  - version: ```5.2.1```
+  - package name ```smart-open```
+- ### [The Classical Language Toolkit](http://cltk.org/)
+  - version: ```1.0.21```
+  - package name ```cltk```
+
 ## Resources
 - ### Benchmarks
     Used benchmarks can be found in the ```benchmarks/``` folder. Available benchmarks:
