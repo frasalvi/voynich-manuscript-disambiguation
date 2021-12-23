@@ -1,1 +1,4 @@
 ivtt
+.vs/
+__pycache__/
+.ipynb_checkpoints/
