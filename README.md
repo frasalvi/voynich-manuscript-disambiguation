@@ -4,18 +4,43 @@
 - Francesco Salvi
 - Liudvikas Lazauskas
 
-## Usage
+## Repo structure
 
-The repository contains 3 main notebooks:
+The repository contains 3 main notebooks aswell as 4 modules:
 
 - ```embeddings_italian.ipynb```
-  Responsible for generating and training model on italian text (Dante's Inferno).
+  Responsible for training and evaluating embeddings on italian text (Dante's Inferno).
 - ```embeddings_latin.ipynb```
-  Responsible for generating and training model on latin text (Albert of Aix).
+  Responsible for training and evaluating embeddings on latin text (Albert of Aix).
 - ```embeddings_voynich.ipynb```
-  Responsible for generating and training word embeddings on Voynich Manuscript.
+  Responsible for training embeddings on the Voynich Manuscript.
+- ```corruptions.py```
+  Provide methods to compute ambiguities distributions and to artificially corrupt the texts.
+- ```uncertainties.py```
+  Provide a class to represent ambiguities with their contexts and methods to create a list of ambiguities given a corrupted text.
+- ```baseline.py```
+  Provide methods to generate baseline predictions, computing letter frequencies in the text.
+- ```validation.py```
+  Provide methods to generate predictions and to evaluate the models by computing their accuracy.
 
-## Dependencies
+## Data
+The texts used in this project can be mainly found in the foler ```texts/```. The folder contains historical texts such as Dante's Inferno and Albert of Aix, and Voynich transliterations available [here](http://www.voynich.nu/transcr.html#links). The transliterations are further processed with ivtt, and processed texts are found in the ```data/``` folder.
+
+## Resources
+- Benchmarks
+    Used benchmarks can be found in the ```benchmarks/``` folder. Available benchmarks:
+  - Latin synonym selection benchmark
+
+- Software
+    The software used for filtering and processing the transliterations can be found in ```software/``` folder, taken from [here](http://www.voynich.nu/software/).
+    
+- Documentation
+    Documentation for the usage of IVTT and IVTFF format can be found in the ```documentation/``` folder.
+
+## Predictions
+The resulting predictions of the model trained on Voynich can be found in the ```predictions/``` folder.
+
+## Requirements
 - ### [Gensim Models](https://radimrehurek.com/gensim/auto_examples/index.html##documentation)
     - version: ```4.1.2```
     - package name ``` gensim```
@@ -34,39 +59,3 @@ The repository contains 3 main notebooks:
 - ### [The Classical Language Toolkit](http://cltk.org/)
   - version: ```1.0.21```
   - package name ```cltk```
-
-## Resources
-- ### Benchmarks
-    Used benchmarks can be found in the ```benchmarks/``` folder. Available benchmarks:
-  - Latin synonym selection benchmark
-
-- ### Transliterations
-    This project uses the transliterations found [here](http://www.voynich.nu/transcr.html#links). There are various transliterations available at this source.
-
-- ### Documentation
-    Resources docummenting the usage of IVTFF tools can be found in the ```resources/``` folder.
-
-- ### Transliteration resources 
-    Transliteration resources can be found in the ```data/``` folder. They contain 4 different transliterations in the [IVT](http://www.voynich.nu/software/ivtt/IVTFF_format.pdf) file format.
-
-- ### Software
-    The software used for filtering and altering the transliterations can be found in ```software/``` folder.
-
-## Text Resources
-The texts used in this project can be mainly found in the foler ```texts/```. The folder contains historical texts such as Dante's Inferno and Albert of Aix.
-
-## Helpers
-
-- ### ```baseline.py```
-  Used to generate letter frequencies in the text and later predict an expected word when presented with ambiguities.
-- ### ```corruptions.py```
-  Used to compute probabilities of uncertain and ambiguous characters. It is later used to noise(corrupt) the text when calculating model performance.
-- ### ```uncertainties.py```
-  Uncertainty class that is able to provide context to a given corrupted word. It can be used to put a word in a context or replace it with a similar word.
-- ### ```validation.py```
-  Used to evaluate and compute model accuracy. Has methods to predict uncertain words and corruptions.
-
-<em>For more detailed documentation refer to Docstring the file.</em>
-
-## Predictions
-The resulting predictions of the model trained on Voynich can be found in the ```predictions/``` folder.
