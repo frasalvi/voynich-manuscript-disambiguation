@@ -1,4 +1,4 @@
-# ML Project 2: 
+# ML Project 2: Disambiguating Voynich Manuscript transliterations with word embeddings
 ### Team members
 - Jirka Lhotka
 - Francesco Salvi
