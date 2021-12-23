@@ -1,0 +1,7 @@
+gensim==4.1.2
+numpy==1.19.5
+scipy==1.7.3
+nltk==3.6.5
+gensim==4.1.2
+smart-open==5.2.1
+cltk==1.0.21
