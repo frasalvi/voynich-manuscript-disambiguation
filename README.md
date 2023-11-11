@@ -1,8 +1,9 @@
-# ML Project 2: Disambiguating Voynich Manuscript transliterations with word embeddings
-### Team members
-- Jirka Lhotka
-- Francesco Salvi
-- Liudvikas Lazauskas
+# Disambiguating Voynich Manuscript transliterations with word embeddings
+
+Read our [report](Disambiguating%20Voynich%20Manuscript%20transliterations.pdf)!
+
+This work was realised as part of the course "CS-433 Machine Learning" at EPFL, and is the joint effort of of [Francesco Salvi](https://github.com/frasalvi), [Jirka Lhotka](https://github.com/jirkalhotka). and [Liudvikas Lazauskas](https://github.com/Leauyy).
+
 
 ## Repo structure
 
